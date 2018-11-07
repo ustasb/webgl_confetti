@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #afafaf;
+        padding-left: 20px;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 5px 0;
+      }
+
+      #gl-canvas {
+        cursor: pointer;
+        margin: 5px 0;
+      }
+
+      #confetti-slider {
+        margin-top: 10px;
+        width: 512px;
+      }
+    </style>
+
+    <link type="text/css" rel="stylesheet" href="external_libs/jquery_ui/css/ui-lightness/jquery-ui-1.10.1.custom.css" />
+    <script src="external_libs/jquery-1.9.1.js"></script>
+    <script src="external_libs/jquery_ui/js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="external_libs/gl-matrix.js"></script>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec3 aVertexPosition;
+      attribute vec4 aVertexColor;
+
+      uniform mat4 uProjectionMatrix;
+      uniform mat4 uModelViewMatrix;
+
+      varying vec4 vColor;
+
+      void main() {
+        gl_Position = uProjectionMatrix * uModelViewMatrix * vec4(aVertexPosition, 1.0);
+        gl_PointSize = 3.0;
+        vColor = aVertexColor;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      varying vec4 vColor;
+
+      void main() {
+        gl_FragColor = vColor;
+      }
+    </script>
+
+    <script src="lib/confetti_emitter.js"></script>
+    <script src="lib/app.js"></script>
+  </head>
+  <body>
+    <canvas id="gl-canvas" width="512" height="512"></canvas>
+    <br>
+    Minimum Count: <span id="confetti-count">1000</span>
+    <br>
+    <div id="confetti-slider"></div>
+    <br>
+    Animate Opacity:
+    <input id="animate-opacity" type="checkbox" />
+  </body>
+</html>
