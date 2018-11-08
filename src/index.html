@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WebGL Confetti</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Brian Ustas">
+    <meta name="description" content="Interactive confetti simulation in raw WebGl.">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #afafaf;
+      }
+
+      #gl-canvas, .controls {
+        display: block;
+        width: 600px;
+        margin: auto;
+      }
+
+      #gl-canvas {
+        margin: 40px auto 5px auto;
+        cursor: pointer;
+      }
+
+      #confetti-slider {
+        margin-top: 20px;
+      }
+    </style>
+
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="vendor/gl-matrix.js"></script>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec3 aVertexPosition;
+      attribute vec4 aVertexColor;
+
+      uniform mat4 uProjectionMatrix;
+      uniform mat4 uModelViewMatrix;
+
+      varying vec4 vColor;
+
+      void main() {
+        gl_Position = uProjectionMatrix * uModelViewMatrix * vec4(aVertexPosition, 1.0);
+        gl_PointSize = 3.0;
+        vColor = aVertexColor;
+      }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      varying vec4 vColor;
+
+      void main() {
+        gl_FragColor = vColor;
+      }
+    </script>
+
+    <script src="dist/confetti_emitter.js"></script>
+    <script src="dist/app.js"></script>
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <canvas id="gl-canvas" width="600" height="400"></canvas>
+      <div class="controls">
+        Use your mouse to rotate the scene.
+        <br>
+        <br>
+        Minimum Count: <span id="confetti-count">1000</span>
+        <br>
+        <div id="confetti-slider"></div>
+        <br>
+        Animate Opacity:
+        <input id="animate-opacity" type="checkbox" />
+      </div>
+    </div>
+  </body>
+</html>
