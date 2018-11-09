@@ -127,7 +127,7 @@ initFloorBuffer = ->
 drawFloor = ->
   # Every vertex should use the same color
   gl.disableVertexAttribArray(shaderProgram.vertexColorAttribute);
-  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 0, 0, 1, 1);  # blue
+  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 1, 1, 1, 1);  # white
 
   # Use the vertex buffer array for vertex positions
   gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute)
@@ -141,8 +141,8 @@ drawFloor = ->
   gl.drawElements(gl.TRIANGLE_FAN, floorIndexBuffer.numOfItems, gl.UNSIGNED_SHORT, 0)
 
   # Draw the outline lines
-  gl.lineWidth(2)
-  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 1, 1, 0, 1);  # yellow
+  gl.lineWidth(5)
+  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 0, 0, 0, 1);  # black
   gl.drawElements(gl.LINE_LOOP, floorIndexBuffer.numOfItems, gl.UNSIGNED_SHORT, 0)
 
 # Define the properties of a cube
@@ -212,7 +212,7 @@ initCubeBuffer = ->
 drawCube = ->
   # Every vertex should use the same color
   gl.disableVertexAttribArray(shaderProgram.vertexColorAttribute);
-  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 1, 0, 0, 1);  # red
+  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 1, 1, 1, 1);  # white
 
   # Use the vertex buffer array for vertex positions
   gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute)
@@ -226,12 +226,12 @@ drawCube = ->
   gl.drawElements(gl.TRIANGLES, cubeVertexBuffer.numOfItems, gl.UNSIGNED_SHORT, 0)
 
   # Draw the outline lines
-  gl.lineWidth(2)
-  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 1, 1, 0, 1);  # yellow
+  gl.lineWidth(5)
+  gl.vertexAttrib4f(shaderProgram.vertexColorAttribute, 0, 0, 0, 1);  # black
   gl.drawElements(gl.LINE_LOOP, cubeIndexBuffer.numOfItems, gl.UNSIGNED_SHORT, 0)
 
 prepareToDraw = ->
-  vertical_fov = 60 * RADIANS_PER_DEGREE
+  vertical_fov = 45 * RADIANS_PER_DEGREE
   # perspective(out matrix, fov in radians, aspect ratio, near limit, far limit)
   mat4.perspective(projectionMatrix, vertical_fov, gl.viewportWidth / gl.viewportHeight, 0.1, 100)
 
