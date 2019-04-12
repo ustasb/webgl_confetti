@@ -4,7 +4,7 @@
 - Initial release: 02/03/13
 - Author: [Brian Ustas](http://brianustas.com)
 
-Interactive confetti simulation written with raw WebGl.
+Interactive confetti simulation written with raw WebGL.
 
 ![](https://github.com/ustasb/webgl_confetti/blob/master/webgl_confetti.jpg)
 

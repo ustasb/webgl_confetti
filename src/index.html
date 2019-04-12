@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
-    <title>WebGL Confetti</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Brian Ustas">
-    <meta name="description" content="Interactive confetti simulation in raw WebGl.">
+    <meta property="og:locale" content="en_US" />
+
+    <title>WebGL Confetti</title>
+    <meta property="og:title" content="WebGL Confetti" />
+    <meta name="author" content="Brian Ustas" />
+
+    <meta name="description" content="Interactive confetti simulation in raw WebGL." />
+    <meta property="og:description" content="Interactive confetti simulation in raw WebGL." />
+
+    <meta property="og:url" content="https://brianustas.com/webgl-confetti/" />
+    <link rel="canonical" href="https://brianustas.com/webgl-confetti/">
+
+    <meta property="og:image" content="https://brianustas.com/assets/images/thumbnails/webgl-confetti.jpg" />
+    <meta property="og:type" content="website" />
+
     <style>
       body {
         font-family: Arial, sans-serif;
         background-color: #afafaf;
+      }
+
+      .content-wrapper {
+        text-align: center;
       }
 
       #gl-canvas, .controls {
@@ -63,9 +79,11 @@
   </head>
   <body>
     <div class="content-wrapper">
+      <h1>WebGL Confetti</h1>
       <canvas id="gl-canvas" width="600" height="400"></canvas>
       <div class="controls">
         Use your mouse to rotate the scene.
+        <br>
         <br>
         <br>
         Minimum Count: <span id="confetti-count">1000</span>
